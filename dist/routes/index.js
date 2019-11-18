@@ -15,7 +15,7 @@ exports.register = (app) => {
     });
     app.get('/guitars', oidc.ensureAuthenticated(), (req, res) => {
         const user = req.userContext ? req.userContext.userinfo : null;
-        res.render('guitars');
+        res.render('guitars', { isAuthenticated: req.isAuthenticated(), user });
     });
 };
 //# sourceMappingURL=index.js.map

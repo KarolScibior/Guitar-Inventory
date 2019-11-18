@@ -19,6 +19,6 @@ export const register = (app: express.Application) => {
 
   app.get('/guitars', oidc.ensureAuthenticated(), (req: any, res) => {
     const user = req.userContext ? req.userContext.userinfo : null;
-    res.render('guitars');
+    res.render('guitars', { isAuthenticated: req.isAuthenticated(), user });
   });
 };
