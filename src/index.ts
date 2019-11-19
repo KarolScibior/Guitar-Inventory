@@ -10,6 +10,8 @@ const port = process.env.SERVER_PORT;
 
 const app: express.Application = express();
 
+app.use(express.json());
+
 app.set('views', path.join( __dirname, 'views' ));
 app.set('view engine', 'ejs');
 

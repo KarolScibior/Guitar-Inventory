@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "initdb": "ts-node tools/initdb",
     "clean": "rimraf dist/*",
     "copy-assets": "ts-node tools/copyAssets",
     "lint": "tslint -c tslint.json -p tsconfig.json --fix",
@@ -22,7 +23,9 @@
     "dotenv": "^8.2.0",
     "ejs": "^2.7.2",
     "express": "^4.17.1",
-    "express-session": "^1.17.0"
+    "express-session": "^1.17.0",
+    "pg": "^7.12.1",
+    "pg-promise": "^10.2.1"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
@@ -30,6 +33,7 @@
     "@types/express-session": "^1.15.15",
     "@types/fs-extra": "^8.0.1",
     "@types/node": "^12.12.8",
+    "@types/pg": "^7.11.2",
     "@types/shelljs": "^0.8.6",
     "fs-extra": "^8.1.0",
     "nodemon": "^1.19.4",
