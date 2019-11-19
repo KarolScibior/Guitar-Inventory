@@ -11,8 +11,70 @@
 <body>
     <% include partials/nav %>
     <div class="container">
-        <h1 class="header">Guitar Inventory</h1>
-        <p>Your future list of guitars!</p>
+        <div id="app">
+            <div class="row" id="guitarList">
+                <h3>Guitar list</h3>
+                <table v-if="hazGuitars">
+                    <thead>
+                        <tr>
+                            <th>Year</th>
+                            <th>Brand</th>
+                            <th>Model</th>
+                            <th>Color</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="guitar in guitars">
+                            <td>{{ guitar.year }}</td>
+                            <td>{{ guitar.brand }}</td>
+                            <td>{{ guitar.model }}</td>
+                            <td>{{ guitar.color }}</td>
+                            <td>
+                                <button id="guitarDelete" @click="confirmDeleteGuitar(guitar.id)" class="btn-small"><i class="material-icons right">delete</i>Delete</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p v-if="noGuitars">No guitars yet!</p>
+            </div>
+            <div class="row" id="guitarEdit">
+                <h3>Add a guitar</h3>
+                <form class="col s12" @submit.prevent="addGuitar">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input v-model="year" ref="year" placeholder="2005" id="year" type="text" class="validate">
+                            <label for="brand">Year</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input v-model="brand" ref="brand" placeholder="Paul Reed Smith" id="brand" type="text" class="validate">
+                            <label for="brand">Brand</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input v-model="model" ref="model" placeholder="Custom 24" id="model" type="text" class="validate">
+                            <label for="model">Model</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input v-model="color" ref="color" placeholder="Whale Blue" id="color" type="text" class="validate">
+                            <label for="model">Color</label>
+                        </div>
+                    </div>
+                    <button id="guitarEditSubmit" class="btn" type="submit"><i class="material-icons right">send</i>Submit</button>
+                </form>
+            </div>
+            <div id="deleteConfirm" ref="deleteConfirm" class="modal">
+                <div class="modal-content">
+                    <h4>Confirm delete</h4>
+                    <p>Delete {{ selectedGuitar }}?</p>
+                </div>
+                <div class="modal-footer">
+                    <button @click="deleteGuitar(selectedGuitarId)" class="modal-close btn-flat">Ok</button>
+                    <button class="modal-close btn-flat">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
+    <script src="js/main.js"></script></body>
 </html>

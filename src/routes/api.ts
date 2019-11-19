@@ -21,7 +21,7 @@ export const register = (app: express.Application) => {
         SELECT id, brand, model, year, color
         FROM guitars
         WHERE user_id=$[userId]
-        ORDER BY year, brand, motel`, { userId });
+        ORDER BY year, brand, model`, { userId });
       return res.json(guitars);
     } catch (err) {
       console.log(err);
